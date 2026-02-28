@@ -90,11 +90,11 @@ function Stat({ icon: Icon, label, value }) {
 }
 
 export default function BBCLearningTracker() {
-  const [entries, setEntries] = useState(() => {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return safeParse(raw, []);
-  });
-
+  const [entries, setEntries] = useState<any[]>([]);
+useEffect(() => {
+  const raw = window.localStorage.getItem(STORAGE_KEY);
+  setEntries(safeParse(raw, []));
+}, []);
   const [tab, setTab] = useState("dashboard");
   const [q, setQ] = useState("");
   const [topicFilter, setTopicFilter] = useState("All");
@@ -104,8 +104,9 @@ export default function BBCLearningTracker() {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
-  }, [entries]);
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+}, [entries]);
 
   const active = useMemo(() => entries.find((e) => e.id === activeId) || null, [entries, activeId]);
 
