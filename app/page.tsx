@@ -117,7 +117,7 @@ export default function BBCLearningTracker() {
       const ms7 = 7 * 24 * 60 * 60 * 1000;
       return entries.filter((e) => {
         const d = new Date(e.date || "");
-        return !isNaN(d) && now - d <= ms7;
+        return !isNaN(d.getTime()) && now.getTime() - d.getTime() <= ms7;
       }).length;
     })();
     const avgTime = (() => {
