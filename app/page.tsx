@@ -45,10 +45,11 @@ function uid() {
   return Math.random().toString(36).slice(2, 10) + "_" + Date.now().toString(36);
 }
 
-function safeParse(json, fallback) {
+function safeParse<T>(json: string | null, fallback: T): T {
   try {
-    const v = JSON.parse(json);
-    return v ?? fallback;
+    if (!json) return fallback;
+    const v = JSON.parse(json) as T;
+    return (v ?? fallback) as T;
   } catch {
     return fallback;
   }
