@@ -65,7 +65,7 @@ function lineCount(text: string) {
   return text.split(/\n/).length;
 }
 
-function buildPrompt(entry) {
+function buildPrompt(entry: any) {
   // 사용자가 기사 전체를 붙여넣는 경우를 대비해 "발췌" 권고 포함
   const excerpt = (entry.excerpt || "").trim();
   const myKo = (entry.myTranslation || "").trim();
