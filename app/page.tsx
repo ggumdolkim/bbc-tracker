@@ -55,12 +55,12 @@ function safeParse<T>(json: string | null, fallback: T): T {
   }
 }
 
-function wordCount(text) {
+function wordCount(text: string) {
   if (!text) return 0;
   return text.trim().split(/\s+/).filter(Boolean).length;
 }
 
-function lineCount(text) {
+function lineCount(text: string) {
   if (!text) return 0;
   return text.split(/\n/).length;
 }
